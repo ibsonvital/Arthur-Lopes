@@ -148,17 +148,12 @@ header {
 
 /* --- HERO SECTION: CORREÇÃO DO CAMINHO DA IMAGEM --- */
 .hero-bg {
-    /* O caminho '../img/xadrez.jpg' significa:
-       1. Sai da pasta 'css' (..)
-       2. Entra na pasta 'img'
-       3. Pega o arquivo 'xadrez.jpg'
-       Isso só funciona se o arquivo se chamar exatamente 'xadrez.jpg' na sua pasta img.
-    */
+    /* CAMINHO CORRETO PARA style.css SOLTO: Vai diretamente para a pasta 'img' */
     background: 
         /* Camada de sobreposição preta (para escurecer e mesclar) */
         linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
         /* IMAGEM DE FUNDO: Garanta que o nome do arquivo no seu PC é 'xadrez.jpg' */
-        url('../img/xadrez.jpg') no-repeat center center/cover; 
+        url('rei.jpg') no-repeat center center/cover; 
     
     color: white;
     padding: 100px 0;
