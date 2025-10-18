@@ -1,207 +1,479 @@
-/* 1. VARIÁVEIS CSS (Dark Mode: Fundo Preto Total) */
-:root {
-    --primary-color: #00bcd4; /* Ciano/Azul Vibrante - Destaque (Tech) */
-    --secondary-color: #f8f9fa; /* Branco/Claro - Títulos */
-    --text-color: #c9d1d9; /* Cinza Claro - Corpo do Texto */
-    --light-bg: #111111; /* Fundo de Seção Secundária (Quase preto) */
-    --dark-bg: #000000; /* Fundo Principal: PRETO TOTAL */
-    --card-bg: #0d0d0d; /* Fundo de Cards e Header */
-    --white: #fff;
-    --font-primary: 'Montserrat', sans-serif;
-}
-
-/* 2. RESET BÁSICO E TIPOGRAFIA */
+/* GERAIS E RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    scroll-behavior: smooth;
+    font-family: 'Montserrat', sans-serif;
 }
 
-/* REFORÇO CRUCIAL: FUNDO PRETO NO BODY */
 body {
-    font-family: var(--font-primary);
     line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--dark-bg); /* FUNDO PRETO PARA TODO O SITE */
+    background-color: #f4f4f4;
+    color: #333;
 }
 
-h1, h2, h3 {
-    color: var(--secondary-color);
-    margin-bottom: 1rem;
-    font-weight: 700;
-}
-h2 {
-    text-align: center;
-    margin-bottom: 40px;
-}
-.slogan {
-    color: var(--primary-color);
-    font-size: 1.2rem;
-    font-weight: 700;
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-/* 3. LAYOUT E UTILITÁRIOS */
+ul {
+    list-style: none;
+}
+
+/* LAYOUT E UTILIDADES */
 .container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
+    margin: auto;
+    padding: 0 20px;
 }
 
 .section-padding {
-    padding: 100px 0;
+    padding: 80px 0;
+}
+
+.bg-light {
+    background-color: #f9f9f9;
 }
 
 .bg-dark {
-    background-color: var(--card-bg);
-    color: var(--secondary-color);
-}
-.bg-light { 
-    background-color: var(--light-bg); 
+    background-color: #1a1a1a;
+    color: #e0e0e0;
 }
 
-.grid-3 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-}
-.grid-2-col {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 50px;
-    align-items: center;
-    text-align: left;
-}
-.grid-4 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
+/* TÍTULOS */
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    font-weight: 700;
 }
 
-
-/* 6. HERO: FUNDO COM IMAGEM MESCLADA DO REI DO XADREZ */
-#hero {
-    min-height: 90vh; 
-    display: flex;
-    align-items: center;
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
     text-align: center;
-    position: relative;
-    overflow: hidden;
+    font-weight: 700;
+}
 
-    /* APLICAÇÃO DA IMAGEM DE FUNDO (CAMINHO: SAI DA PASTA CSS, ENTRA NA IMG) */
+h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+/* BOTÕES */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.btn-primary {
+    background-color: #ff9900; /* Laranja da paleta */
+    color: #1a1a1a;
+    border: 2px solid #ff9900;
+}
+
+.btn-primary:hover {
+    background-color: #e68a00;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #ff9900;
+    border: 2px solid #ff9900;
+}
+
+.btn-secondary:hover {
+    background-color: #ff9900;
+    color: #1a1a1a;
+    transform: translateY(-2px);
+}
+
+.btn-cta {
+    background-color: #ff9900;
+    color: #1a1a1a;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-cta:hover {
+    background-color: #e68a00;
+}
+
+/* --- HEADER / NAV BAR --- */
+header {
+    background-color: #1a1a1a;
+    color: white;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #ff9900;
+}
+
+#main-nav ul {
+    display: flex;
+    gap: 25px;
+}
+
+#main-nav a:hover {
+    color: #ff9900;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+/* --- HERO SECTION: CORREÇÃO DO CAMINHO DA IMAGEM --- */
+.hero-bg {
+    /* O caminho '../img/xadrez.jpg' significa:
+       1. Sai da pasta 'css' (..)
+       2. Entra na pasta 'img'
+       3. Pega o arquivo 'xadrez.jpg'
+       Isso só funciona se o arquivo se chamar exatamente 'xadrez.jpg' na sua pasta img.
+    */
     background: 
         /* Camada de sobreposição preta (para escurecer e mesclar) */
         linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
-        /* IMAGEM AQUI: Ajuste o .jpg para .png se o seu arquivo for PNG */
+        /* IMAGEM DE FUNDO: Garanta que o nome do arquivo no seu PC é 'xadrez.jpg' */
         url('../img/xadrez.jpg') no-repeat center center/cover; 
+    
+    color: white;
+    padding: 100px 0;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
 }
 
-/* Garante que o conteúdo fique visível acima da sobreposição */
-#hero .container {
-    position: relative;
-    z-index: 2; 
+.hero-bg .container {
+    max-width: 900px;
 }
 
-#hero h1 {
-    font-size: 3.5rem;
-    color: var(--white); 
+.slogan {
+    color: #ff9900;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
 }
 
-/* 7. PLACEHOLDERS E IMAGENS */
-.img-placeholder {
-    background-color: var(--card-bg);
-    border: 2px dashed var(--primary-color);
+/* --- SEÇÃO SOBRE --- */
+.grid-2-col {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.profile-photo {
+    text-align: center;
+}
+
+.profile-image-item {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.sobre-text p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+/* --- SEÇÃO PROJETOS (DASHBOARDS) --- */
+.project-item {
+    margin-bottom: 50px;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.project-item h3 {
+    color: #ff9900;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+/* Mini Carrossel (Componente JavaScript) */
+.mini-carousel-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.mini-carousel-track-container {
+    overflow: hidden;
+    flex-grow: 1;
+    border-radius: 5px;
+}
+
+.mini-carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.mini-carousel-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.dashboard-thumb img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.mini-carousel-control {
+    background: #ff9900;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 0 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--primary-color);
-    font-size: 0.9rem;
-    text-align: center;
-    padding: 15px;
-    overflow: hidden;
-}
-.profile-photo {
-    height: 350px;
-    border-radius: 8px;
-    margin: 0;
-}
-.dashboard-thumb {
-    height: 450px; 
-    margin-bottom: 20px;
-    border-radius: 6px;
-    padding: 0;
-    overflow: hidden;
-    border: 1px solid var(--light-bg); 
-}
-.profile-image-item,
-.dashboard-image-item {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-}
-
-/* 8. MINI-CARROSSEL */
-.project-item {
-    padding: 40px 0;
-    border-bottom: 1px solid var(--card-bg); 
-    margin-bottom: 20px;
-    text-align: center;
-}
-.project-item:last-child {
-    border-bottom: none;
-}
-.project-item h3 {
-    text-align: left;
-    color: var(--primary-color);
-}
-.project-item p {
-    text-align: left;
-    margin-bottom: 30px;
-}
-
-.mini-carousel-container {
-    position: relative;
-    max-width: 900px; 
-    margin: 0 auto;
-}
-.mini-carousel-track-container {
-    overflow: hidden; 
-    padding: 10px 0;
-}
-.mini-carousel-track {
-    display: flex; /* ESSENCIAL: Permite a rolagem horizontal */
-    transition: transform 0.3s ease-in-out;
-    cursor: grab;
-}
-.mini-carousel-slide {
-    min-width: 100%; 
-    box-sizing: border-box;
-    padding: 0 5px; 
-    flex-shrink: 0;
-    text-align: center;
-}
-
-/* Controles do Mini-Carrossel */
-.mini-carousel-control {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    color: var(--primary-color);
-    border: 1px solid var(--primary-color);
-    border-radius: 50%;
-    padding: 10px 15px;
-    cursor: pointer;
-    z-index: 10;
     transition: background-color 0.3s;
-    font-size: 1.2rem;
 }
-.mini-carousel-control.prev { left: -50px; }
-.mini-carousel-control.next { right: -50px; }
+
+.mini-carousel-control:hover {
+    background-color: #e68a00;
+}
 
 
-/* 11. EFEITO SCROLL REVEAL (JS) e RESPONSIVIDADE */
-.hidden { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-.visible { opacity: 1; transform: translateY(0); }
+/* --- SEÇÃO METODOLOGIA --- */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    text-align: center;
+    margin-top: 40px;
+}
 
-/* ... (Demais estilos e media queries) ... */
+.step-card {
+    background: #282828;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.step-card i {
+    font-size: 3em;
+    color: #ff9900;
+    margin-bottom: 15px;
+}
+
+.step-card h3 {
+    color: white;
+}
+
+/* --- SEÇÃO HABILIDADES --- */
+.skills-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.skill-item {
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 700;
+    border-left: 5px solid #ff9900;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* --- SEÇÃO CONTATO --- */
+#contact-form {
+    max-width: 600px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#contact-form input[type="text"],
+#contact-form input[type="email"],
+#contact-form textarea {
+    padding: 15px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    width: 100%;
+}
+
+#contact-form textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+#contact-form button {
+    cursor: pointer;
+}
+
+.message-status {
+    text-align: center;
+    margin-top: 10px;
+    color: #ff9900;
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: #1a1a1a;
+    color: #bbb;
+    padding: 20px 0;
+    border-top: 3px solid #ff9900;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+footer p {
+    font-size: 0.9em;
+}
+
+.social-links a {
+    color: #ff9900;
+    margin-left: 20px;
+    font-size: 1.2em;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: white;
+}
+
+.cases-link {
+    color: #ff9900;
+    font-weight: 700;
+    margin-right: 10px;
+}
+
+/* --- ANIMAÇÕES (JavaScript - .reveal) --- */
+.reveal {
+    opacity: 1;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.reveal.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 900px) {
+    .grid-2-col {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .grid-2-col .profile-photo {
+        order: -1;
+    }
+    
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5em;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    /* Menu Hamburguer */
+    #main-nav {
+        display: none;
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    #main-nav.active {
+        display: block;
+    }
+
+    #main-nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .header-content {
+        flex-wrap: wrap;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+
+    footer .container {
+        justify-content: center;
+        text-align: center;
+    }
+
+    footer p {
+        margin-bottom: 10px;
+    }
+
+    .social-links {
+        margin-top: 10px;
+    }
+    
+    .cases-link {
+        display: block;
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-list {
+        grid-template-columns: 1fr;
+    }
+}
