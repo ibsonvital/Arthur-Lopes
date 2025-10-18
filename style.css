@@ -1,0 +1,207 @@
+/* 1. VARIÁVEIS CSS (Dark Mode: Fundo Preto Total) */
+:root {
+    --primary-color: #00bcd4; /* Ciano/Azul Vibrante - Destaque (Tech) */
+    --secondary-color: #f8f9fa; /* Branco/Claro - Títulos */
+    --text-color: #c9d1d9; /* Cinza Claro - Corpo do Texto */
+    --light-bg: #111111; /* Fundo de Seção Secundária (Quase preto) */
+    --dark-bg: #000000; /* Fundo Principal: PRETO TOTAL */
+    --card-bg: #0d0d0d; /* Fundo de Cards e Header */
+    --white: #fff;
+    --font-primary: 'Montserrat', sans-serif;
+}
+
+/* 2. RESET BÁSICO E TIPOGRAFIA */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+/* REFORÇO CRUCIAL: FUNDO PRETO NO BODY */
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--dark-bg); /* FUNDO PRETO PARA TODO O SITE */
+}
+
+h1, h2, h3 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.slogan {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+/* 3. LAYOUT E UTILITÁRIOS */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.section-padding {
+    padding: 100px 0;
+}
+
+.bg-dark {
+    background-color: var(--card-bg);
+    color: var(--secondary-color);
+}
+.bg-light { 
+    background-color: var(--light-bg); 
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+.grid-2-col {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 50px;
+    align-items: center;
+    text-align: left;
+}
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+
+/* 6. HERO: FUNDO COM IMAGEM MESCLADA DO REI DO XADREZ */
+#hero {
+    min-height: 90vh; 
+    display: flex;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    /* APLICAÇÃO DA IMAGEM DE FUNDO (CAMINHO: SAI DA PASTA CSS, ENTRA NA IMG) */
+    background: 
+        /* Camada de sobreposição preta (para escurecer e mesclar) */
+        linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+        /* IMAGEM AQUI: Ajuste o .jpg para .png se o seu arquivo for PNG */
+        url('../img/xadrez.jpg') no-repeat center center/cover; 
+}
+
+/* Garante que o conteúdo fique visível acima da sobreposição */
+#hero .container {
+    position: relative;
+    z-index: 2; 
+}
+
+#hero h1 {
+    font-size: 3.5rem;
+    color: var(--white); 
+}
+
+/* 7. PLACEHOLDERS E IMAGENS */
+.img-placeholder {
+    background-color: var(--card-bg);
+    border: 2px dashed var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 15px;
+    overflow: hidden;
+}
+.profile-photo {
+    height: 350px;
+    border-radius: 8px;
+    margin: 0;
+}
+.dashboard-thumb {
+    height: 450px; 
+    margin-bottom: 20px;
+    border-radius: 6px;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid var(--light-bg); 
+}
+.profile-image-item,
+.dashboard-image-item {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+/* 8. MINI-CARROSSEL */
+.project-item {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--card-bg); 
+    margin-bottom: 20px;
+    text-align: center;
+}
+.project-item:last-child {
+    border-bottom: none;
+}
+.project-item h3 {
+    text-align: left;
+    color: var(--primary-color);
+}
+.project-item p {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.mini-carousel-container {
+    position: relative;
+    max-width: 900px; 
+    margin: 0 auto;
+}
+.mini-carousel-track-container {
+    overflow: hidden; 
+    padding: 10px 0;
+}
+.mini-carousel-track {
+    display: flex; /* ESSENCIAL: Permite a rolagem horizontal */
+    transition: transform 0.3s ease-in-out;
+    cursor: grab;
+}
+.mini-carousel-slide {
+    min-width: 100%; 
+    box-sizing: border-box;
+    padding: 0 5px; 
+    flex-shrink: 0;
+    text-align: center;
+}
+
+/* Controles do Mini-Carrossel */
+.mini-carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 50%;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s;
+    font-size: 1.2rem;
+}
+.mini-carousel-control.prev { left: -50px; }
+.mini-carousel-control.next { right: -50px; }
+
+
+/* 11. EFEITO SCROLL REVEAL (JS) e RESPONSIVIDADE */
+.hidden { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.visible { opacity: 1; transform: translateY(0); }
+
+/* ... (Demais estilos e media queries) ... */
